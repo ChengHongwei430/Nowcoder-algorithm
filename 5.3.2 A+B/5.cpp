@@ -18,7 +18,7 @@ int main() {
                 result += x;
             }
 
-            cout << result << endl;//ÔÚÔËËã½áÊøºó²ÅÊä³ö
+            cout << result << endl;//åœ¨ç´¯åŠ ç»“æœå¤–é¢è¾“å‡º
             if (i < N - 1) cout << endl;
 
         }
