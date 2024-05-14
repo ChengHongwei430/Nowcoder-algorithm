@@ -4,16 +4,16 @@
 using namespace std;
 
 
-//½â¾ön¸öÅÌ´Ó ÆğÊ¼Öùfrom ÒÆµ½ Ä¿±êÖùto £¬ÆäÖĞ ÖĞ¼äÖùvia Îª¸¨ÖúµÄµİ¹éº¯Êı
+//è§£å†³nä¸ªç›˜ä» èµ·å§‹æŸ±from ç§»åˆ° ç›®æ ‡æŸ±to ï¼Œå…¶ä¸­ ä¸­é—´æŸ±via ä¸ºè¾…åŠ©çš„é€’å½’å‡½æ•°
 
 struct stack_hanoi {
     int pc, n;
-    //³ÌĞò¼ÆÊıÆ÷£¬Õ»µÄÉî¶È
+    //ç¨‹åºè®¡æ•°å™¨ï¼Œæ ˆçš„æ·±åº¦
     char from, to, via;
-    //ÆğÊ¼Öù£¬Ä¿±êÖù£¬ÖĞ¼äÖù
+    //èµ·å§‹æŸ±ï¼Œç›®æ ‡æŸ±ï¼Œä¸­é—´æŸ±
 };
 
-//µİ¹éººÅµËş
+//é€’å½’æ±‰è¯ºå¡”
 void hanoi_recur(int n, char from, char to, char via) {
     if (n == 1) cout << from << "->" << to << endl;
     else {
@@ -23,7 +23,7 @@ void hanoi_recur(int n, char from, char to, char via) {
     }
 }
 
-//·Çµİ¹éººÅµËşµÄÈëÕ»²Ù×÷
+//éé€’å½’æ±‰è¯ºå¡”çš„å…¥æ ˆæ“ä½œ
 void push(stack<stack_hanoi>& st,int n, char from, char to, char via,int pc) {
     stack_hanoi  x;
     x.n = n;
@@ -37,15 +37,15 @@ void push(stack<stack_hanoi>& st,int n, char from, char to, char via,int pc) {
 
 int main() {
 
-    //²âÊÔ
-    cout << "µİ¹é°æ£º" << endl;
+    //æµ‹è¯•
+    cout << "é€’å½’ç‰ˆï¼š" << endl;
     char from = 'a', via = 'b', to = 'c';
     int N = 3;
     hanoi_recur(N, from, to, via);
 
-    cout << "·Çµİ¹é°æ£º" << endl;
+    cout << "éé€’å½’ç‰ˆï¼š" << endl;
 
-    stack<stack_hanoi> st;//½¨Ò»¸öÕ»£¬À´Ä£ÄâÏµÍ³Õ»
+    stack<stack_hanoi> st;//å»ºä¸€ä¸ªæ ˆï¼Œæ¥æ¨¡æ‹Ÿç³»ç»Ÿæ ˆ
     stack_hanoi a;
     a.n = N;
     a.from = 'a';
@@ -65,12 +65,12 @@ int main() {
         st.pop();
 
         for (int i = 0; i < st.size(); ++i) {
-            cout << "¡ª¡ª¡ª";
+            cout << "â€”â€”â€”";
         }
         cout<< n << x.from << "->" << x.to <<"(" <<pc<<")" << endl;
-        /*if (pc == 0) cout << "µÚ" << st.size() << "²ã" << "µÚ" << pc + 1 << "²½£º" << n << x.from << "->" << x.to << endl;
-        else if (pc == 3) cout << "µÚ" << st.size() << "²ã" << "µÚ" << pc+1 << "²½£º" << "break" << endl;
-        else cout << "µÚ" << st.size() << "²ã" << "µÚ" << pc+1 << "²½£º" << endl;*/
+        /*if (pc == 0) cout << "ç¬¬" << st.size() << "å±‚" << "ç¬¬" << pc + 1 << "æ­¥ï¼š" << n << x.from << "->" << x.to << endl;
+        else if (pc == 3) cout << "ç¬¬" << st.size() << "å±‚" << "ç¬¬" << pc+1 << "æ­¥ï¼š" << "break" << endl;
+        else cout << "ç¬¬" << st.size() << "å±‚" << "ç¬¬" << pc+1 << "æ­¥ï¼š" << endl;*/
 
 
         switch (x.pc) {
@@ -78,36 +78,36 @@ int main() {
             case 0:
                 if(x.n==1) cout << x.from << "->" << x.to << endl;
                 else {
-                    push(st, n, f, t, v, pc+1);//Éú³Éµ±Ç°²ãµÄÒ»´ÎÒÆ¶¯²Ù×÷
+                    push(st, n, f, t, v, pc+1);//ç”Ÿæˆå½“å‰å±‚çš„ä¸€æ¬¡ç§»åŠ¨æ“ä½œï¼ŒåŒæ—¶åœ¨æ ˆä¸­ä¿ç•™ä¸‹ä¸€æ­¥çš„æ–­ç‚¹
                     push(st, n-1, f, v, t, 0);
-                    // Æğµãµ½ÖĞ×ª
-                    // ÎªÁËÉú³ÉÏÂÒ»²ã²Ù×÷¶ø´æÔÚ
-                    // ÔÚÏÂÒ»²ãÉú³É²Ù×÷Ê±£¬ÕâÒ»¸öÕ»Ö¡¾Í»á±»ÊÍ·Å
+                    // èµ·ç‚¹åˆ°ä¸­è½¬
+                    // ä¸ºäº†ç”Ÿæˆä¸‹ä¸€å±‚æ“ä½œè€Œå­˜åœ¨
+                    // åœ¨ä¸‹ä¸€å±‚ç”Ÿæˆæ“ä½œæ—¶ï¼Œè¿™ä¸€ä¸ªæ ˆå¸§å°±ä¼šè¢«é‡Šæ”¾
                 }
                 break;
 
             case 1:
                 push(st, n, f, t, v, pc + 1);
-                push(st, 1, f, t, v, 0);//Æğµãµ½Ä¿±ê
+                push(st, 1, f, t, v, 0);//èµ·ç‚¹åˆ°ç›®æ ‡
                 break;
 
             case 2:
                 push(st, n, f, t, v, pc + 1);
-                push(st, n-1, v, t, f, 0);//ÖĞ×ªµ½Ä¿±ê
+                push(st, n-1, v, t, f, 0);//ä¸­è½¬åˆ°ç›®æ ‡
                 break;
 
             case 3:
                 break;
 
         }
-        //Ã¿Ò»²ã¶¼½«²úÉúÒ»¸öcase 0/1/2/3,Ö»ÊÇÕâ²¢²»ÊÇÁ¬Ğø²úÉúµÄ,3ÊÇÍË³ö£¬ÎÒ¾ÍºöÂÔÁË
-        //±ÈÈç:
-        //      µÚÒ»²ã             µÚ¶ş²ã              µÚÈı²ã
+        //æ¯ä¸€å±‚éƒ½å°†äº§ç”Ÿä¸€ä¸ªcase 0/1/2/3,åªæ˜¯è¿™å¹¶ä¸æ˜¯è¿ç»­äº§ç”Ÿçš„,3æ˜¯é€€å‡ºï¼Œæˆ‘å°±å¿½ç•¥äº†
+        //æ¯”å¦‚:
+        //      ç¬¬ä¸€å±‚             ç¬¬äºŒå±‚              ç¬¬ä¸‰å±‚
         //     n=3,pc=0
         //       3a-c
         //     n=3,pc=1           n=2,pc=0
         //                          2a-b
-        //                        n=2,pc=1         1a-c£¨n=1Ö±½ÓÖ´ĞĞ£©
+        //                        n=2,pc=1         1a-cï¼ˆn=1ç›´æ¥æ‰§è¡Œï¼‰
         //                          1a-b
         //                        n=2,pc=2
         //                          1c-b
