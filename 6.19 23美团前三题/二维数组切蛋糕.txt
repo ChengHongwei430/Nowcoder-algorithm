@@ -1,0 +1,57 @@
+
+#include<iostream>
+#include<vector>
+#include<limits.h>
+
+using namespace std;
+
+int main(){
+    
+    int x,y;
+    cin>>x>>y;
+    
+    vector<vector<long long>> ve(x,vector<long long>(y,0));
+    //////////////二维数组内部数组格式不能忘
+    
+    ///////////////存前缀和很容易出错，复杂的就不用前缀和了
+    long long z;
+    long long w=0;
+    for(int i=0;i<x;++i){
+        for(int j=0;j<y;++j){
+            ///////////////////for指针的增量条件我经常写错
+            cin>>z;
+            w+=z;//记录总重量
+            if(j>0) ve[i][j]=ve[i][j-1]+z;//计算每一行的前缀和
+            else ve[i][j]=z;
+        }
+    }
+    
+    
+    long long minx=LLONG_MAX;
+    //////// long long 型的最大值，要带#include<limits.h>头文件
+    
+    //遍历横切
+    long long leftx=0,right=0;
+    for(int i=0;i<x-1;++i){
+        leftx+=ve[i][y-1];
+        right=w-leftx;
+        long long tempmin=leftx>=right?leftx-right:right-leftx;
+        minx=min(tempmin,minx);
+    }
+    
+    //遍历纵切
+    leftx=0,right=0;
+    for(int i=0;i<y-1;++i){
+        leftx=0;
+        for(int j=0;j<x;++j){
+            leftx+=ve[j][i];
+        }
+        right=w-leftx;
+        long long tempmin=leftx>=right?leftx-right:right-leftx;
+        minx=min(tempmin,minx);
+    }
+    
+    cout<<minx<<endl;
+    
+    system("pause");
+}

@@ -1,0 +1,31 @@
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main(){
+    
+    int x,y,n;
+    vector<int> ve;//只有两条路
+    cin>>n;
+    for(int i=0;i<n;++i){
+        cin>>x;
+        ve.push_back(x);
+    }
+    
+    cin>>x>>y;
+    x=x-1;
+    y=y-1;//变成序号
+    
+    int minx=min(x,y);
+    int maxx=x+y-minx;
+    
+    long long rlen=0,llen=0;////精度爆炸，整型的Int放不下最终的数据
+    
+    for(int i=minx;i<maxx;++i) rlen+=ve[i];
+    for(int i=maxx;i!=minx;i=(i+1)%(ve.size())) llen+=ve[i];
+    
+    cout<<min(rlen,llen);
+    
+    //system("pause");
+}
